@@ -29,8 +29,8 @@ int inputArrays(int *_A, int *_B, int N) {
   } break;
   case 2: {
     ifstream inputA, inputB;
-    inputA.open("/home/ober0n/Desktop/inputA");
-    inputB.open("/home/ober0n/Desktop/inputB");
+    inputA.open("/home/ober0n/cpp/inputA");
+    inputB.open("/home/ober0n/cpp/inputB");
     if (!inputA.is_open()) {
       cout << "Error reading file A def!" << endl;
       return -1;
@@ -57,6 +57,7 @@ int inputArrays(int *_A, int *_B, int N) {
     }
   } break;
   }
+  return 0;
 }
 int inputArrays(vector<int> &_A, vector<int> &_B, const int N) {
   cout << "1. Vvedenya z consoli" << endl;
@@ -82,8 +83,8 @@ int inputArrays(vector<int> &_A, vector<int> &_B, const int N) {
   } break;
   case 2: {
     ifstream inputA, inputB;
-    inputA.open("/home/ober0n/Desktop/inputA");
-    inputB.open("/home/ober0n/Desktop/inputB");
+    inputA.open("/home/ober0n/cpp/inputA");
+    inputB.open("/home/ober0n/cpp/inputB");
     if (!inputA.is_open()) {
       cout << "Error reading file A vect!" << endl;
       return -1;
@@ -94,10 +95,14 @@ int inputArrays(vector<int> &_A, vector<int> &_B, const int N) {
     }
     cout << "Reading first " << N << " numbers from A file..." << endl;
     for (int i = 0; i < N; i++) {
-      inputA >> _A[i];
+      int temp;
+      inputA >> temp;
+      _A.push_back(temp);
     }
     for (int i = 0; i < N; i++) {
-      inputB >> _B[i];
+      int temp;
+      inputB >> temp;
+      _B.push_back(temp);
     }
   } break;
 
@@ -111,6 +116,7 @@ int inputArrays(vector<int> &_A, vector<int> &_B, const int N) {
     }
   } break;
   }
+  return 0;
 }
 void printArrs(const int *_A, const int *_B, const int N) {
   cout << "Printing arrays\n";
@@ -195,6 +201,8 @@ int main() {
     if (check == -1) {
       cout << "Shutdown" << endl;
       // _getch();
+      free(Apoint);
+      free(Bpoint);
       return -1;
     }
     printArrs(Apoint, Bpoint, N);
@@ -208,6 +216,8 @@ int main() {
     int check = inputArrays(Apoint, Bpoint, N);
     if (check == -1) {
       cout << "Shutdown" << endl;
+      delete[] Apoint;
+      delete[] Bpoint;
       //   _getch();
       return -1;
     }
@@ -233,6 +243,7 @@ int main() {
   }
 
   cout << "Done" << endl;
+
   // _getch();
   return 0;
 }
